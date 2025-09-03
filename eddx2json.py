@@ -3,8 +3,8 @@ from pathlib import Path
 from typing import Literal
 
 # 转换模式：
-# - "topic_root"：以 MainTopic 和 Floating 为根（原有方式）
-# - "idea_root" ：以 MainIdea 和 Floating 为根（新方式）
+# - "topic_root"：以 MainTopic 和 Floating 为根
+# - "idea_root" ：以 MainIdea 和 Floating 为根
 Mode = Literal["topic_root", "idea_root"]
 
 # 作为“子节点”参与构树的类型（两种模式一致）
@@ -88,8 +88,8 @@ def _pick_roots(shapes: dict, mode: Mode):
 def export_eddx(eddx_path: str, mode: Mode = "topic_root", out_dir: str | None = None):
     """
     mode:
-      - 'topic_root'：MainTopic + Floating 为根（原方式）
-      - 'idea_root' ：MainIdea  + Floating 为根（新方式）
+      - 'topic_root'：MainTopic + Floating 为根
+      - 'idea_root' ：MainIdea  + Floating 为根
     """
     eddx_path = Path(eddx_path)
     out_root = Path(out_dir) if out_dir else eddx_path.with_suffix("")
@@ -127,12 +127,6 @@ def export_single_page_xml(page_xml_path: str, mode: Mode = "topic_root", out_di
     for sid in float_roots:
         _dump_root_json(sid, page_dir, shapes, children_map)
 
-# 示例：
-# export_eddx("example.eddx", mode="topic_root")
-# export_eddx("example.eddx", mode="idea_root")
-# export_single_page_xml("pages/page1.xml", mode="idea_root", out_dir="./example/page1")
-
 if __name__ == "__main__":
-    # export_eddx("./Java.eddx", mode="idea_root")
-    export_eddx("./电视机维修思维导图.eddx", mode="topic_root")
-# export_single_page_xml("pages/page1.xml", "./example/page1")
+    export_eddx("./your_eddx_file_name.eddx", mode="topic_root")
+
